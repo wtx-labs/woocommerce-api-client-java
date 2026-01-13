@@ -12,7 +12,6 @@ public class GsonConfig {
     
         return new GsonBuilder()
                 .setStrictness(Strictness.LENIENT)
-                .serializeNulls()
                 .registerTypeAdapter(OffsetDateTime.class, new OffsetDateTimeAdapter())
                 .create();
     
