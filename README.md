@@ -7,9 +7,33 @@
 A lightweight Java client library for WooCommerce REST API integration. Built for Java developers who need to integrate their applications with WooCommerce e-commerce platform. 🚀
 
 This API client provides a type-safe Java interface for WooCommerce REST API v3, enabling seamless management of:
-- WooCommerce products and inventory
-- Customer data and orders
-- E-commerce operations via REST API
+
+- **Products & Inventory Management**
+  - Products with full CRUD operations, variations, duplication, and batch processing
+  - Product attributes, attribute terms, categories, tags, shipping classes, and reviews
+  - Complete product catalog management with inventory tracking
+
+- **Customer & Order Management**
+  - Customer data management with full CRUD and batch operations
+  - Order processing with complete lifecycle management
+  - Order notes for internal communication and tracking
+  - Order refunds for financial transaction handling
+
+- **E-commerce Operations**
+  - Coupon management for discounts and promotions
+  - Payment gateway configuration and management
+  - Tax rates and tax classes configuration
+  - Shipping zones, locations, and shipping methods setup
+
+- **Store Configuration**
+  - Settings management for store configuration
+  - Webhook setup for real-time event notifications
+  - System status monitoring and diagnostic tools
+
+- **Reporting & Analytics**
+  - Sales reports and summaries
+  - Top sellers analysis
+  - Totals reports for coupons, customers, orders, products, and reviews
 
 ## ✨ Why choose this client?
 
@@ -18,8 +42,6 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
 - 📚 **Clear documentation** - comprehensive examples for Java integration
 - 🚀 **Wide Java support** - compatible with Java 8 and newer
 - ⚡ **OpenAPI Generated** - based on our [OpenAPI specification](https://github.com/wtx-labs/woocommerce-api-openapi-specification) developed from official WooCommerce documentation
-
-## 🎯 Currently implemented features
 
 - ✅ Customers API
   - List all customers
@@ -35,6 +57,7 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
   - Get a specific product
   - Update a product
   - Delete a product
+  - Duplicate a product
   - Batch create, update and delete multiple products
 
 - ✅ Product Variations API
@@ -44,22 +67,6 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
   - Update a product variation
   - Delete a product variation
   - Batch create, update and delete multiple product variations
-
-- ✅ Product Categories API
-  - List all product categories
-  - Create a new product category
-  - Get a specific product category
-  - Update a product category
-  - Delete a product category
-  - Batch create, update and delete multiple product categories
-
-- ✅ Orders API
-  - List all orders
-  - Create a new order
-  - Get a specific order
-  - Update an order
-  - Delete an order
-  - Batch create, update and delete multiple orders
 
 - ✅ Product Attributes API
   - List all product attributes
@@ -76,6 +83,14 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
   - Update a product attribute term
   - Delete a product attribute term
   - Batch create, update and delete attribute terms
+
+- ✅ Product Categories API
+  - List all product categories
+  - Create a new product category
+  - Get a specific product category
+  - Update a product category
+  - Delete a product category
+  - Batch create, update and delete multiple product categories
 
 - ✅ Product Shipping Classes API
   - List all product shipping classes
@@ -101,7 +116,86 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
   - Delete a product review
   - Batch create, update and delete multiple product reviews
 
-- ✅ Reports
+- ✅ Orders API
+  - List all orders
+  - Create a new order
+  - Get a specific order
+  - Update an order
+  - Delete an order
+  - Batch create, update and delete multiple orders
+
+- ✅ Order Notes API
+  - List all notes for an order
+  - Create a new order note
+  - Get a specific order note
+  - Delete an order note
+
+- ✅ Order Refunds API
+  - List all refunds for an order
+  - Create a new order refund
+  - Get a specific order refund
+  - Delete an order refund
+
+- ✅ Coupons API
+  - List all coupons
+  - Create a new coupon
+  - Get a specific coupon
+  - Update a coupon
+  - Delete a coupon
+  - Batch create, update and delete multiple coupons
+
+- ✅ Settings API
+  - List all settings groups
+  - Get a specific settings group
+  - Get a specific setting
+  - Update a specific setting
+
+- ✅ Shipping Zones API
+  - List all shipping zones
+  - Create a new shipping zone
+  - Get a specific shipping zone
+  - Update a shipping zone
+  - Delete a shipping zone
+
+- ✅ Shipping Zone Locations API
+  - List all locations for a shipping zone
+  - Update locations for a shipping zone
+
+- ✅ Shipping Zone Methods API
+  - List all shipping methods for a shipping zone
+  - Create a new shipping method for a shipping zone
+  - Get a specific shipping zone method
+  - Update a shipping zone method
+  - Delete a shipping zone method
+
+- ✅ Payment Gateways API
+  - List all payment gateways
+  - Get a specific payment gateway
+  - Update a payment gateway
+
+- ✅ Taxes API
+  - List all taxes
+  - Create a new tax
+  - Get a specific tax
+  - Update a tax
+  - Delete a tax
+  - Batch create, update and delete multiple taxes
+
+- ✅ Tax Classes API
+  - List all tax classes
+  - Create a new tax class
+  - Get a specific tax class by slug
+  - Delete a tax class
+
+- ✅ Webhooks API
+  - List all webhooks
+  - Create a new webhook
+  - Get a specific webhook
+  - Update a webhook
+  - Delete a webhook
+  - Batch create, update and delete multiple webhooks
+
+- ✅ Reports API
   - List all reports
   - Retrieve and view sales report
   - Retrieve and view top sellers report
@@ -111,16 +205,15 @@ This API client provides a type-safe Java interface for WooCommerce REST API v3,
   - Retrieve and view products totals report
   - Retrieve and view reviews totals report
 
-## 🚨 Project status
-
-> ⚠️ **Note: This is an early development version!**
-> 
-> We are actively implementing more WooCommerce API features.
-> Contributions and feedback are welcome on GitHub!
+- ✅ System Status API
+  - Get system status
+  - List all system status tools
+  - Get a specific system status tool
+  - Run a system status tool
 
 ## 📦 Version information
 
-- **Current version**: `0.9.8`
+- **Current version**: `1.0.0`
 - **Supported WooCommerce API version**: `v3`
 - **Java compatibility**: Java 8+
 
@@ -142,7 +235,7 @@ You can add the library to your project by including the dependency from Maven C
 <dependency>
     <groupId>pl.wtx.woocommerce</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>0.9.8</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -160,7 +253,7 @@ Then add the locally built artifact to your project:
 <dependency>
     <groupId>pl.wtx.woocommerce</groupId>
     <artifactId>woocommerce-api-client</artifactId>
-    <version>0.9.8</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 

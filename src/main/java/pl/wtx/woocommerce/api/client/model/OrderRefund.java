@@ -20,7 +20,12 @@ import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
 import java.io.IOException;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import pl.wtx.woocommerce.api.client.model.MetaData;
+import pl.wtx.woocommerce.api.client.model.OrderRefundLineItemsInner;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -65,6 +70,46 @@ public class OrderRefund {
   @javax.annotation.Nullable
   private String total;
 
+  public static final String SERIALIZED_NAME_DATE_CREATED = "date_created";
+  @SerializedName(SERIALIZED_NAME_DATE_CREATED)
+  @javax.annotation.Nullable
+  private OffsetDateTime dateCreated;
+
+  public static final String SERIALIZED_NAME_DATE_CREATED_GMT = "date_created_gmt";
+  @SerializedName(SERIALIZED_NAME_DATE_CREATED_GMT)
+  @javax.annotation.Nullable
+  private OffsetDateTime dateCreatedGmt;
+
+  public static final String SERIALIZED_NAME_AMOUNT = "amount";
+  @SerializedName(SERIALIZED_NAME_AMOUNT)
+  @javax.annotation.Nullable
+  private String amount;
+
+  public static final String SERIALIZED_NAME_API_REFUND = "api_refund";
+  @SerializedName(SERIALIZED_NAME_API_REFUND)
+  @javax.annotation.Nullable
+  private Boolean apiRefund;
+
+  public static final String SERIALIZED_NAME_LINE_ITEMS = "line_items";
+  @SerializedName(SERIALIZED_NAME_LINE_ITEMS)
+  @javax.annotation.Nullable
+  private List<OrderRefundLineItemsInner> lineItems = new ArrayList<>();
+
+  public static final String SERIALIZED_NAME_REFUNDED_BY = "refunded_by";
+  @SerializedName(SERIALIZED_NAME_REFUNDED_BY)
+  @javax.annotation.Nullable
+  private Integer refundedBy;
+
+  public static final String SERIALIZED_NAME_REFUNDED_PAYMENT = "refunded_payment";
+  @SerializedName(SERIALIZED_NAME_REFUNDED_PAYMENT)
+  @javax.annotation.Nullable
+  private Boolean refundedPayment;
+
+  public static final String SERIALIZED_NAME_META_DATA = "meta_data";
+  @SerializedName(SERIALIZED_NAME_META_DATA)
+  @javax.annotation.Nullable
+  private List<MetaData> metaData = new ArrayList<>();
+
   public OrderRefund() {
   }
 
@@ -74,7 +119,7 @@ public class OrderRefund {
   }
 
   /**
-   * Refund ID.
+   * Refund ID. read-only
    * @return id
    */
   @javax.annotation.Nullable
@@ -125,6 +170,174 @@ public class OrderRefund {
   }
 
 
+  public OrderRefund dateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
+    this.dateCreated = dateCreated;
+    return this;
+  }
+
+  /**
+   * The date the refund was created, in the site&#39;s timezone. read-only
+   * @return dateCreated
+   */
+  @javax.annotation.Nullable
+  public OffsetDateTime getDateCreated() {
+    return dateCreated;
+  }
+
+  public void setDateCreated(@javax.annotation.Nullable OffsetDateTime dateCreated) {
+    this.dateCreated = dateCreated;
+  }
+
+
+  public OrderRefund dateCreatedGmt(@javax.annotation.Nullable OffsetDateTime dateCreatedGmt) {
+    this.dateCreatedGmt = dateCreatedGmt;
+    return this;
+  }
+
+  /**
+   * The date the refund was created, as GMT. read-only
+   * @return dateCreatedGmt
+   */
+  @javax.annotation.Nullable
+  public OffsetDateTime getDateCreatedGmt() {
+    return dateCreatedGmt;
+  }
+
+  public void setDateCreatedGmt(@javax.annotation.Nullable OffsetDateTime dateCreatedGmt) {
+    this.dateCreatedGmt = dateCreatedGmt;
+  }
+
+
+  public OrderRefund amount(@javax.annotation.Nullable String amount) {
+    this.amount = amount;
+    return this;
+  }
+
+  /**
+   * Refund amount.
+   * @return amount
+   */
+  @javax.annotation.Nullable
+  public String getAmount() {
+    return amount;
+  }
+
+  public void setAmount(@javax.annotation.Nullable String amount) {
+    this.amount = amount;
+  }
+
+
+  public OrderRefund apiRefund(@javax.annotation.Nullable Boolean apiRefund) {
+    this.apiRefund = apiRefund;
+    return this;
+  }
+
+  /**
+   * When true, the payment gateway API is used to generate the refund.
+   * @return apiRefund
+   */
+  @javax.annotation.Nullable
+  public Boolean getApiRefund() {
+    return apiRefund;
+  }
+
+  public void setApiRefund(@javax.annotation.Nullable Boolean apiRefund) {
+    this.apiRefund = apiRefund;
+  }
+
+
+  public OrderRefund lineItems(@javax.annotation.Nullable List<OrderRefundLineItemsInner> lineItems) {
+    this.lineItems = lineItems;
+    return this;
+  }
+
+  public OrderRefund addLineItemsItem(OrderRefundLineItemsInner lineItemsItem) {
+    if (this.lineItems == null) {
+      this.lineItems = new ArrayList<>();
+    }
+    this.lineItems.add(lineItemsItem);
+    return this;
+  }
+
+  /**
+   * List of line items data.
+   * @return lineItems
+   */
+  @javax.annotation.Nullable
+  public List<OrderRefundLineItemsInner> getLineItems() {
+    return lineItems;
+  }
+
+  public void setLineItems(@javax.annotation.Nullable List<OrderRefundLineItemsInner> lineItems) {
+    this.lineItems = lineItems;
+  }
+
+
+  public OrderRefund refundedBy(@javax.annotation.Nullable Integer refundedBy) {
+    this.refundedBy = refundedBy;
+    return this;
+  }
+
+  /**
+   * User ID of user who created the refund. read-only
+   * @return refundedBy
+   */
+  @javax.annotation.Nullable
+  public Integer getRefundedBy() {
+    return refundedBy;
+  }
+
+  public void setRefundedBy(@javax.annotation.Nullable Integer refundedBy) {
+    this.refundedBy = refundedBy;
+  }
+
+
+  public OrderRefund refundedPayment(@javax.annotation.Nullable Boolean refundedPayment) {
+    this.refundedPayment = refundedPayment;
+    return this;
+  }
+
+  /**
+   * If the refund was created via the API. read-only
+   * @return refundedPayment
+   */
+  @javax.annotation.Nullable
+  public Boolean getRefundedPayment() {
+    return refundedPayment;
+  }
+
+  public void setRefundedPayment(@javax.annotation.Nullable Boolean refundedPayment) {
+    this.refundedPayment = refundedPayment;
+  }
+
+
+  public OrderRefund metaData(@javax.annotation.Nullable List<MetaData> metaData) {
+    this.metaData = metaData;
+    return this;
+  }
+
+  public OrderRefund addMetaDataItem(MetaData metaDataItem) {
+    if (this.metaData == null) {
+      this.metaData = new ArrayList<>();
+    }
+    this.metaData.add(metaDataItem);
+    return this;
+  }
+
+  /**
+   * Meta data.
+   * @return metaData
+   */
+  @javax.annotation.Nullable
+  public List<MetaData> getMetaData() {
+    return metaData;
+  }
+
+  public void setMetaData(@javax.annotation.Nullable List<MetaData> metaData) {
+    this.metaData = metaData;
+  }
+
+
 
   @Override
   public boolean equals(Object o) {
@@ -137,12 +350,20 @@ public class OrderRefund {
     OrderRefund orderRefund = (OrderRefund) o;
     return Objects.equals(this.id, orderRefund.id) &&
         Objects.equals(this.reason, orderRefund.reason) &&
-        Objects.equals(this.total, orderRefund.total);
+        Objects.equals(this.total, orderRefund.total) &&
+        Objects.equals(this.dateCreated, orderRefund.dateCreated) &&
+        Objects.equals(this.dateCreatedGmt, orderRefund.dateCreatedGmt) &&
+        Objects.equals(this.amount, orderRefund.amount) &&
+        Objects.equals(this.apiRefund, orderRefund.apiRefund) &&
+        Objects.equals(this.lineItems, orderRefund.lineItems) &&
+        Objects.equals(this.refundedBy, orderRefund.refundedBy) &&
+        Objects.equals(this.refundedPayment, orderRefund.refundedPayment) &&
+        Objects.equals(this.metaData, orderRefund.metaData);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, reason, total);
+    return Objects.hash(id, reason, total, dateCreated, dateCreatedGmt, amount, apiRefund, lineItems, refundedBy, refundedPayment, metaData);
   }
 
   @Override
@@ -152,6 +373,14 @@ public class OrderRefund {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
     sb.append("    total: ").append(toIndentedString(total)).append("\n");
+    sb.append("    dateCreated: ").append(toIndentedString(dateCreated)).append("\n");
+    sb.append("    dateCreatedGmt: ").append(toIndentedString(dateCreatedGmt)).append("\n");
+    sb.append("    amount: ").append(toIndentedString(amount)).append("\n");
+    sb.append("    apiRefund: ").append(toIndentedString(apiRefund)).append("\n");
+    sb.append("    lineItems: ").append(toIndentedString(lineItems)).append("\n");
+    sb.append("    refundedBy: ").append(toIndentedString(refundedBy)).append("\n");
+    sb.append("    refundedPayment: ").append(toIndentedString(refundedPayment)).append("\n");
+    sb.append("    metaData: ").append(toIndentedString(metaData)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -177,6 +406,14 @@ public class OrderRefund {
     openapiFields.add("id");
     openapiFields.add("reason");
     openapiFields.add("total");
+    openapiFields.add("date_created");
+    openapiFields.add("date_created_gmt");
+    openapiFields.add("amount");
+    openapiFields.add("api_refund");
+    openapiFields.add("line_items");
+    openapiFields.add("refunded_by");
+    openapiFields.add("refunded_payment");
+    openapiFields.add("meta_data");
 
     // a set of required properties/fields (JSON key names)
     openapiRequiredFields = new HashSet<String>();
@@ -208,6 +445,37 @@ public class OrderRefund {
       }
       if ((jsonObj.get("total") != null && !jsonObj.get("total").isJsonNull()) && !jsonObj.get("total").isJsonPrimitive()) {
         throw new IllegalArgumentException(String.format("Expected the field `total` to be a primitive type in the JSON string but got `%s`", jsonObj.get("total").toString()));
+      }
+      if ((jsonObj.get("amount") != null && !jsonObj.get("amount").isJsonNull()) && !jsonObj.get("amount").isJsonPrimitive()) {
+        throw new IllegalArgumentException(String.format("Expected the field `amount` to be a primitive type in the JSON string but got `%s`", jsonObj.get("amount").toString()));
+      }
+      if (jsonObj.get("line_items") != null && !jsonObj.get("line_items").isJsonNull()) {
+        JsonArray jsonArraylineItems = jsonObj.getAsJsonArray("line_items");
+        if (jsonArraylineItems != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("line_items").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `line_items` to be an array in the JSON string but got `%s`", jsonObj.get("line_items").toString()));
+          }
+
+          // validate the optional field `line_items` (array)
+          for (int i = 0; i < jsonArraylineItems.size(); i++) {
+            OrderRefundLineItemsInner.validateJsonElement(jsonArraylineItems.get(i));
+          };
+        }
+      }
+      if (jsonObj.get("meta_data") != null && !jsonObj.get("meta_data").isJsonNull()) {
+        JsonArray jsonArraymetaData = jsonObj.getAsJsonArray("meta_data");
+        if (jsonArraymetaData != null) {
+          // ensure the json data is an array
+          if (!jsonObj.get("meta_data").isJsonArray()) {
+            throw new IllegalArgumentException(String.format("Expected the field `meta_data` to be an array in the JSON string but got `%s`", jsonObj.get("meta_data").toString()));
+          }
+
+          // validate the optional field `meta_data` (array)
+          for (int i = 0; i < jsonArraymetaData.size(); i++) {
+            MetaData.validateJsonElement(jsonArraymetaData.get(i));
+          };
+        }
       }
   }
 

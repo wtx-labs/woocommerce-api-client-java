@@ -1,7 +1,7 @@
 package pl.wtx.woocommerce;
 
-import pl.wtx.woocommerce.api.client.config.OkHttpClientConfig;
 import pl.wtx.woocommerce.api.client.config.GsonConfig;
+import pl.wtx.woocommerce.api.client.config.OkHttpClientConfig;
 import pl.wtx.woocommerce.api.client.invoker.ApiClient;
 import pl.wtx.woocommerce.api.client.invoker.JSON;
 

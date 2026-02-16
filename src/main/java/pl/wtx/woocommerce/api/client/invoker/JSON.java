@@ -98,6 +98,8 @@ public class JSON {
         gsonBuilder.registerTypeAdapter(byte[].class, byteArrayAdapter);
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.ApiError.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.ApiErrorData.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.BatchCoupons200Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.BatchCouponsRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.BatchCustomers200Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.BatchCustomersRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.BatchOrders200Response.CustomTypeAdapterFactory());
@@ -110,20 +112,29 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.BatchProductVariationsRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.BatchProducts200Response.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.BatchProductsRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.BatchTaxes200Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.BatchTaxesRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.BatchUpdateAttributeTermsRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.BatchUpdateProductAttributesRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.BatchUpdateProductReviewsRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.BatchUpdateShippingClassesRequest.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.BatchWebhooks200Response.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.BatchWebhooksRequest.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.Billing.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.Coupon.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.Customer.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.MetaData.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.Order.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.OrderCouponLine.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.OrderFeeLine.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.OrderLineItem.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.OrderNote.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.OrderRefund.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.OrderRefundLineItemsInner.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.OrderRefundLineItemsInnerTaxesInner.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.OrderShippingLine.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.OrderTaxLine.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.PaymentGateway.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.Product.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.ProductAttribute.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.ProductAttributeTerm.CustomTypeAdapterFactory());
@@ -144,7 +155,18 @@ public class JSON {
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.ReportSalesSummaryItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.ReportTopSellersItem.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.ReportTotalsItem.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.Setting.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.SettingsGroup.CustomTypeAdapterFactory());
         gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.Shipping.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.ShippingZone.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.ShippingZoneLinks.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.ShippingZoneLocation.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.ShippingZoneMethod.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.SystemStatus.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.SystemStatusTool.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.Tax.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.TaxClass.CustomTypeAdapterFactory());
+        gsonBuilder.registerTypeAdapterFactory(new pl.wtx.woocommerce.api.client.model.Webhook.CustomTypeAdapterFactory());
         gson = gsonBuilder.create();
     }
 

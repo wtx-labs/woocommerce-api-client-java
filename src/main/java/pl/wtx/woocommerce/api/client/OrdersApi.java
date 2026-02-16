@@ -32,6 +32,8 @@ import pl.wtx.woocommerce.api.client.model.BatchOrders200Response;
 import pl.wtx.woocommerce.api.client.model.BatchOrdersRequest;
 import java.time.OffsetDateTime;
 import pl.wtx.woocommerce.api.client.model.Order;
+import pl.wtx.woocommerce.api.client.model.OrderNote;
+import pl.wtx.woocommerce.api.client.model.OrderRefund;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -334,6 +336,296 @@ public class OrdersApi {
         return localVarCall;
     }
     /**
+     * Build call for createOrderNote
+     * @param orderId ID of order for note to create (required)
+     * @param orderNote Order note object with data to create. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns created order note. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call createOrderNoteCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull OrderNote orderNote, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = orderNote;
+
+        // create path and map variables
+        String localVarPath = "/orders/{orderId}/notes"
+            .replace("{" + "orderId" + "}", localVarApiClient.escapeString(orderId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "basicAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call createOrderNoteValidateBeforeCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull OrderNote orderNote, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'orderId' is set
+        if (orderId == null) {
+            throw new ApiException("Missing the required parameter 'orderId' when calling createOrderNote(Async)");
+        }
+
+        // verify the required parameter 'orderNote' is set
+        if (orderNote == null) {
+            throw new ApiException("Missing the required parameter 'orderNote' when calling createOrderNote(Async)");
+        }
+
+        return createOrderNoteCall(orderId, orderNote, _callback);
+
+    }
+
+    /**
+     * This API helps you to create a new order note.
+     * 
+     * @param orderId ID of order for note to create (required)
+     * @param orderNote Order note object with data to create. (required)
+     * @return OrderNote
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns created order note. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public OrderNote createOrderNote(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull OrderNote orderNote) throws ApiException {
+        ApiResponse<OrderNote> localVarResp = createOrderNoteWithHttpInfo(orderId, orderNote);
+        return localVarResp.getData();
+    }
+
+    /**
+     * This API helps you to create a new order note.
+     * 
+     * @param orderId ID of order for note to create (required)
+     * @param orderNote Order note object with data to create. (required)
+     * @return ApiResponse&lt;OrderNote&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns created order note. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<OrderNote> createOrderNoteWithHttpInfo(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull OrderNote orderNote) throws ApiException {
+        okhttp3.Call localVarCall = createOrderNoteValidateBeforeCall(orderId, orderNote, null);
+        Type localVarReturnType = new TypeToken<OrderNote>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * This API helps you to create a new order note. (asynchronously)
+     * 
+     * @param orderId ID of order for note to create (required)
+     * @param orderNote Order note object with data to create. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns created order note. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call createOrderNoteAsync(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull OrderNote orderNote, final ApiCallback<OrderNote> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = createOrderNoteValidateBeforeCall(orderId, orderNote, _callback);
+        Type localVarReturnType = new TypeToken<OrderNote>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for createOrderRefund
+     * @param orderId ID of order for refund to create (required)
+     * @param orderRefund Order refund object with data to create. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns created order refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call createOrderRefundCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull OrderRefund orderRefund, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = orderRefund;
+
+        // create path and map variables
+        String localVarPath = "/orders/{orderId}/refunds"
+            .replace("{" + "orderId" + "}", localVarApiClient.escapeString(orderId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "basicAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call createOrderRefundValidateBeforeCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull OrderRefund orderRefund, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'orderId' is set
+        if (orderId == null) {
+            throw new ApiException("Missing the required parameter 'orderId' when calling createOrderRefund(Async)");
+        }
+
+        // verify the required parameter 'orderRefund' is set
+        if (orderRefund == null) {
+            throw new ApiException("Missing the required parameter 'orderRefund' when calling createOrderRefund(Async)");
+        }
+
+        return createOrderRefundCall(orderId, orderRefund, _callback);
+
+    }
+
+    /**
+     * This API helps you to create a new order refund.
+     * 
+     * @param orderId ID of order for refund to create (required)
+     * @param orderRefund Order refund object with data to create. (required)
+     * @return OrderRefund
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns created order refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public OrderRefund createOrderRefund(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull OrderRefund orderRefund) throws ApiException {
+        ApiResponse<OrderRefund> localVarResp = createOrderRefundWithHttpInfo(orderId, orderRefund);
+        return localVarResp.getData();
+    }
+
+    /**
+     * This API helps you to create a new order refund.
+     * 
+     * @param orderId ID of order for refund to create (required)
+     * @param orderRefund Order refund object with data to create. (required)
+     * @return ApiResponse&lt;OrderRefund&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns created order refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<OrderRefund> createOrderRefundWithHttpInfo(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull OrderRefund orderRefund) throws ApiException {
+        okhttp3.Call localVarCall = createOrderRefundValidateBeforeCall(orderId, orderRefund, null);
+        Type localVarReturnType = new TypeToken<OrderRefund>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * This API helps you to create a new order refund. (asynchronously)
+     * 
+     * @param orderId ID of order for refund to create (required)
+     * @param orderRefund Order refund object with data to create. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 201 </td><td> Returns created order refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call createOrderRefundAsync(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull OrderRefund orderRefund, final ApiCallback<OrderRefund> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = createOrderRefundValidateBeforeCall(orderId, orderRefund, _callback);
+        Type localVarReturnType = new TypeToken<OrderRefund>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
      * Build call for deleteOrderById
      * @param orderId ID of order to delete (required)
      * @param force Required to be true, as resource does not support trashing. (required)
@@ -478,6 +770,640 @@ public class OrdersApi {
 
         okhttp3.Call localVarCall = deleteOrderByIdValidateBeforeCall(orderId, force, _callback);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for deleteOrderNoteById
+     * @param orderId ID of order for note to delete (required)
+     * @param noteId ID of note to delete (required)
+     * @param force Required to be true, as resource does not support trashing. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns deleted order note. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteOrderNoteByIdCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer noteId, @javax.annotation.Nonnull Boolean force, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/orders/{orderId}/notes/{noteId}"
+            .replace("{" + "orderId" + "}", localVarApiClient.escapeString(orderId.toString()))
+            .replace("{" + "noteId" + "}", localVarApiClient.escapeString(noteId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (force != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("force", force));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "basicAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call deleteOrderNoteByIdValidateBeforeCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer noteId, @javax.annotation.Nonnull Boolean force, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'orderId' is set
+        if (orderId == null) {
+            throw new ApiException("Missing the required parameter 'orderId' when calling deleteOrderNoteById(Async)");
+        }
+
+        // verify the required parameter 'noteId' is set
+        if (noteId == null) {
+            throw new ApiException("Missing the required parameter 'noteId' when calling deleteOrderNoteById(Async)");
+        }
+
+        // verify the required parameter 'force' is set
+        if (force == null) {
+            throw new ApiException("Missing the required parameter 'force' when calling deleteOrderNoteById(Async)");
+        }
+
+        return deleteOrderNoteByIdCall(orderId, noteId, force, _callback);
+
+    }
+
+    /**
+     * This API helps you delete an order note.
+     * 
+     * @param orderId ID of order for note to delete (required)
+     * @param noteId ID of note to delete (required)
+     * @param force Required to be true, as resource does not support trashing. (required)
+     * @return OrderNote
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns deleted order note. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public OrderNote deleteOrderNoteById(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer noteId, @javax.annotation.Nonnull Boolean force) throws ApiException {
+        ApiResponse<OrderNote> localVarResp = deleteOrderNoteByIdWithHttpInfo(orderId, noteId, force);
+        return localVarResp.getData();
+    }
+
+    /**
+     * This API helps you delete an order note.
+     * 
+     * @param orderId ID of order for note to delete (required)
+     * @param noteId ID of note to delete (required)
+     * @param force Required to be true, as resource does not support trashing. (required)
+     * @return ApiResponse&lt;OrderNote&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns deleted order note. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<OrderNote> deleteOrderNoteByIdWithHttpInfo(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer noteId, @javax.annotation.Nonnull Boolean force) throws ApiException {
+        okhttp3.Call localVarCall = deleteOrderNoteByIdValidateBeforeCall(orderId, noteId, force, null);
+        Type localVarReturnType = new TypeToken<OrderNote>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * This API helps you delete an order note. (asynchronously)
+     * 
+     * @param orderId ID of order for note to delete (required)
+     * @param noteId ID of note to delete (required)
+     * @param force Required to be true, as resource does not support trashing. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns deleted order note. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteOrderNoteByIdAsync(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer noteId, @javax.annotation.Nonnull Boolean force, final ApiCallback<OrderNote> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteOrderNoteByIdValidateBeforeCall(orderId, noteId, force, _callback);
+        Type localVarReturnType = new TypeToken<OrderNote>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for deleteOrderRefundById
+     * @param orderId ID of order for refund to delete (required)
+     * @param refundId ID of refund to delete (required)
+     * @param force Required to be true, as resource does not support trashing. (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns deleted order refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteOrderRefundByIdCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer refundId, @javax.annotation.Nonnull Boolean force, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/orders/{orderId}/refunds/{refundId}"
+            .replace("{" + "orderId" + "}", localVarApiClient.escapeString(orderId.toString()))
+            .replace("{" + "refundId" + "}", localVarApiClient.escapeString(refundId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (force != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("force", force));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "basicAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call deleteOrderRefundByIdValidateBeforeCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer refundId, @javax.annotation.Nonnull Boolean force, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'orderId' is set
+        if (orderId == null) {
+            throw new ApiException("Missing the required parameter 'orderId' when calling deleteOrderRefundById(Async)");
+        }
+
+        // verify the required parameter 'refundId' is set
+        if (refundId == null) {
+            throw new ApiException("Missing the required parameter 'refundId' when calling deleteOrderRefundById(Async)");
+        }
+
+        // verify the required parameter 'force' is set
+        if (force == null) {
+            throw new ApiException("Missing the required parameter 'force' when calling deleteOrderRefundById(Async)");
+        }
+
+        return deleteOrderRefundByIdCall(orderId, refundId, force, _callback);
+
+    }
+
+    /**
+     * This API helps you delete an order refund.
+     * 
+     * @param orderId ID of order for refund to delete (required)
+     * @param refundId ID of refund to delete (required)
+     * @param force Required to be true, as resource does not support trashing. (required)
+     * @return OrderRefund
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns deleted order refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public OrderRefund deleteOrderRefundById(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer refundId, @javax.annotation.Nonnull Boolean force) throws ApiException {
+        ApiResponse<OrderRefund> localVarResp = deleteOrderRefundByIdWithHttpInfo(orderId, refundId, force);
+        return localVarResp.getData();
+    }
+
+    /**
+     * This API helps you delete an order refund.
+     * 
+     * @param orderId ID of order for refund to delete (required)
+     * @param refundId ID of refund to delete (required)
+     * @param force Required to be true, as resource does not support trashing. (required)
+     * @return ApiResponse&lt;OrderRefund&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns deleted order refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<OrderRefund> deleteOrderRefundByIdWithHttpInfo(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer refundId, @javax.annotation.Nonnull Boolean force) throws ApiException {
+        okhttp3.Call localVarCall = deleteOrderRefundByIdValidateBeforeCall(orderId, refundId, force, null);
+        Type localVarReturnType = new TypeToken<OrderRefund>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * This API helps you delete an order refund. (asynchronously)
+     * 
+     * @param orderId ID of order for refund to delete (required)
+     * @param refundId ID of refund to delete (required)
+     * @param force Required to be true, as resource does not support trashing. (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns deleted order refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call deleteOrderRefundByIdAsync(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer refundId, @javax.annotation.Nonnull Boolean force, final ApiCallback<OrderRefund> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = deleteOrderRefundByIdValidateBeforeCall(orderId, refundId, force, _callback);
+        Type localVarReturnType = new TypeToken<OrderRefund>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for listAllOrderNotes
+     * @param orderId ID of order for notes to return (required)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of order notes. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listAllOrderNotesCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/orders/{orderId}/notes"
+            .replace("{" + "orderId" + "}", localVarApiClient.escapeString(orderId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (context != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("context", context));
+        }
+
+        if (page != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
+        }
+
+        if (perPage != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("per_page", perPage));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "basicAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call listAllOrderNotesValidateBeforeCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'orderId' is set
+        if (orderId == null) {
+            throw new ApiException("Missing the required parameter 'orderId' when calling listAllOrderNotes(Async)");
+        }
+
+        return listAllOrderNotesCall(orderId, context, page, perPage, _callback);
+
+    }
+
+    /**
+     * This API helps you to view all notes for an order.
+     * 
+     * @param orderId ID of order for notes to return (required)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
+     * @return List&lt;OrderNote&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of order notes. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public List<OrderNote> listAllOrderNotes(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage) throws ApiException {
+        ApiResponse<List<OrderNote>> localVarResp = listAllOrderNotesWithHttpInfo(orderId, context, page, perPage);
+        return localVarResp.getData();
+    }
+
+    /**
+     * This API helps you to view all notes for an order.
+     * 
+     * @param orderId ID of order for notes to return (required)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
+     * @return ApiResponse&lt;List&lt;OrderNote&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of order notes. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<List<OrderNote>> listAllOrderNotesWithHttpInfo(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage) throws ApiException {
+        okhttp3.Call localVarCall = listAllOrderNotesValidateBeforeCall(orderId, context, page, perPage, null);
+        Type localVarReturnType = new TypeToken<List<OrderNote>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * This API helps you to view all notes for an order. (asynchronously)
+     * 
+     * @param orderId ID of order for notes to return (required)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of order notes. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listAllOrderNotesAsync(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, final ApiCallback<List<OrderNote>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = listAllOrderNotesValidateBeforeCall(orderId, context, page, perPage, _callback);
+        Type localVarReturnType = new TypeToken<List<OrderNote>>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for listAllOrderRefunds
+     * @param orderId ID of order for refunds to return (required)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of order refunds. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listAllOrderRefundsCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/orders/{orderId}/refunds"
+            .replace("{" + "orderId" + "}", localVarApiClient.escapeString(orderId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        if (context != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("context", context));
+        }
+
+        if (page != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("page", page));
+        }
+
+        if (perPage != null) {
+            localVarQueryParams.addAll(localVarApiClient.parameterToPair("per_page", perPage));
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "basicAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call listAllOrderRefundsValidateBeforeCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'orderId' is set
+        if (orderId == null) {
+            throw new ApiException("Missing the required parameter 'orderId' when calling listAllOrderRefunds(Async)");
+        }
+
+        return listAllOrderRefundsCall(orderId, context, page, perPage, _callback);
+
+    }
+
+    /**
+     * This API helps you to view all refunds for an order.
+     * 
+     * @param orderId ID of order for refunds to return (required)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
+     * @return List&lt;OrderRefund&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of order refunds. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public List<OrderRefund> listAllOrderRefunds(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage) throws ApiException {
+        ApiResponse<List<OrderRefund>> localVarResp = listAllOrderRefundsWithHttpInfo(orderId, context, page, perPage);
+        return localVarResp.getData();
+    }
+
+    /**
+     * This API helps you to view all refunds for an order.
+     * 
+     * @param orderId ID of order for refunds to return (required)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
+     * @return ApiResponse&lt;List&lt;OrderRefund&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of order refunds. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<List<OrderRefund>> listAllOrderRefundsWithHttpInfo(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage) throws ApiException {
+        okhttp3.Call localVarCall = listAllOrderRefundsValidateBeforeCall(orderId, context, page, perPage, null);
+        Type localVarReturnType = new TypeToken<List<OrderRefund>>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * This API helps you to view all refunds for an order. (asynchronously)
+     * 
+     * @param orderId ID of order for refunds to return (required)
+     * @param context Scope under which the request is made; determines fields present in response. Options: view and edit. Default is view. (optional, default to view)
+     * @param page Current page of the collection. Default is 1. (optional, default to 1)
+     * @param perPage Maximum number of items to be returned in result set. Default is 10. (optional, default to 10)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns list of order refunds. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call listAllOrderRefundsAsync(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nullable String context, @javax.annotation.Nullable Integer page, @javax.annotation.Nullable Integer perPage, final ApiCallback<List<OrderRefund>> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = listAllOrderRefundsValidateBeforeCall(orderId, context, page, perPage, _callback);
+        Type localVarReturnType = new TypeToken<List<OrderRefund>>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
@@ -898,6 +1824,296 @@ public class OrdersApi {
 
         okhttp3.Call localVarCall = retrieveOrderByIdValidateBeforeCall(orderId, _callback);
         Type localVarReturnType = new TypeToken<Order>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for retrieveOrderNoteById
+     * @param orderId ID of order for note to return (required)
+     * @param noteId ID of note to return (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified order note. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call retrieveOrderNoteByIdCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer noteId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/orders/{orderId}/notes/{noteId}"
+            .replace("{" + "orderId" + "}", localVarApiClient.escapeString(orderId.toString()))
+            .replace("{" + "noteId" + "}", localVarApiClient.escapeString(noteId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "basicAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call retrieveOrderNoteByIdValidateBeforeCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer noteId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'orderId' is set
+        if (orderId == null) {
+            throw new ApiException("Missing the required parameter 'orderId' when calling retrieveOrderNoteById(Async)");
+        }
+
+        // verify the required parameter 'noteId' is set
+        if (noteId == null) {
+            throw new ApiException("Missing the required parameter 'noteId' when calling retrieveOrderNoteById(Async)");
+        }
+
+        return retrieveOrderNoteByIdCall(orderId, noteId, _callback);
+
+    }
+
+    /**
+     * This API lets you retrieve and view a specific order note by ID.
+     * 
+     * @param orderId ID of order for note to return (required)
+     * @param noteId ID of note to return (required)
+     * @return OrderNote
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified order note. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public OrderNote retrieveOrderNoteById(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer noteId) throws ApiException {
+        ApiResponse<OrderNote> localVarResp = retrieveOrderNoteByIdWithHttpInfo(orderId, noteId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * This API lets you retrieve and view a specific order note by ID.
+     * 
+     * @param orderId ID of order for note to return (required)
+     * @param noteId ID of note to return (required)
+     * @return ApiResponse&lt;OrderNote&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified order note. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<OrderNote> retrieveOrderNoteByIdWithHttpInfo(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer noteId) throws ApiException {
+        okhttp3.Call localVarCall = retrieveOrderNoteByIdValidateBeforeCall(orderId, noteId, null);
+        Type localVarReturnType = new TypeToken<OrderNote>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * This API lets you retrieve and view a specific order note by ID. (asynchronously)
+     * 
+     * @param orderId ID of order for note to return (required)
+     * @param noteId ID of note to return (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified order note. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call retrieveOrderNoteByIdAsync(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer noteId, final ApiCallback<OrderNote> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = retrieveOrderNoteByIdValidateBeforeCall(orderId, noteId, _callback);
+        Type localVarReturnType = new TypeToken<OrderNote>(){}.getType();
+        localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
+        return localVarCall;
+    }
+    /**
+     * Build call for retrieveOrderRefundById
+     * @param orderId ID of order for refund to return (required)
+     * @param refundId ID of refund to return (required)
+     * @param _callback Callback for upload/download progress
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified order refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call retrieveOrderRefundByIdCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer refundId, final ApiCallback _callback) throws ApiException {
+        String basePath = null;
+        // Operation Servers
+        String[] localBasePaths = new String[] {  };
+
+        // Determine Base Path to Use
+        if (localCustomBaseUrl != null){
+            basePath = localCustomBaseUrl;
+        } else if ( localBasePaths.length > 0 ) {
+            basePath = localBasePaths[localHostIndex];
+        } else {
+            basePath = null;
+        }
+
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/orders/{orderId}/refunds/{refundId}"
+            .replace("{" + "orderId" + "}", localVarApiClient.escapeString(orderId.toString()))
+            .replace("{" + "refundId" + "}", localVarApiClient.escapeString(refundId.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, String> localVarCookieParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = localVarApiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+        };
+        final String localVarContentType = localVarApiClient.selectHeaderContentType(localVarContentTypes);
+        if (localVarContentType != null) {
+            localVarHeaderParams.put("Content-Type", localVarContentType);
+        }
+
+        String[] localVarAuthNames = new String[] { "basicAuth" };
+        return localVarApiClient.buildCall(basePath, localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarCookieParams, localVarFormParams, localVarAuthNames, _callback);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private okhttp3.Call retrieveOrderRefundByIdValidateBeforeCall(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer refundId, final ApiCallback _callback) throws ApiException {
+        // verify the required parameter 'orderId' is set
+        if (orderId == null) {
+            throw new ApiException("Missing the required parameter 'orderId' when calling retrieveOrderRefundById(Async)");
+        }
+
+        // verify the required parameter 'refundId' is set
+        if (refundId == null) {
+            throw new ApiException("Missing the required parameter 'refundId' when calling retrieveOrderRefundById(Async)");
+        }
+
+        return retrieveOrderRefundByIdCall(orderId, refundId, _callback);
+
+    }
+
+    /**
+     * This API lets you retrieve and view a specific order refund by ID.
+     * 
+     * @param orderId ID of order for refund to return (required)
+     * @param refundId ID of refund to return (required)
+     * @return OrderRefund
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified order refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public OrderRefund retrieveOrderRefundById(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer refundId) throws ApiException {
+        ApiResponse<OrderRefund> localVarResp = retrieveOrderRefundByIdWithHttpInfo(orderId, refundId);
+        return localVarResp.getData();
+    }
+
+    /**
+     * This API lets you retrieve and view a specific order refund by ID.
+     * 
+     * @param orderId ID of order for refund to return (required)
+     * @param refundId ID of refund to return (required)
+     * @return ApiResponse&lt;OrderRefund&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified order refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public ApiResponse<OrderRefund> retrieveOrderRefundByIdWithHttpInfo(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer refundId) throws ApiException {
+        okhttp3.Call localVarCall = retrieveOrderRefundByIdValidateBeforeCall(orderId, refundId, null);
+        Type localVarReturnType = new TypeToken<OrderRefund>(){}.getType();
+        return localVarApiClient.execute(localVarCall, localVarReturnType);
+    }
+
+    /**
+     * This API lets you retrieve and view a specific order refund by ID. (asynchronously)
+     * 
+     * @param orderId ID of order for refund to return (required)
+     * @param refundId ID of refund to return (required)
+     * @param _callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @http.response.details
+     <table border="1">
+       <caption>Response Details</caption>
+        <tr><td> Status Code </td><td> Description </td><td> Response Headers </td></tr>
+        <tr><td> 200 </td><td> Returns specified order refund. </td><td>  -  </td></tr>
+        <tr><td> 401 </td><td> Unauthorized </td><td>  -  </td></tr>
+        <tr><td> 404 </td><td> Not Found </td><td>  -  </td></tr>
+     </table>
+     */
+    public okhttp3.Call retrieveOrderRefundByIdAsync(@javax.annotation.Nonnull Integer orderId, @javax.annotation.Nonnull Integer refundId, final ApiCallback<OrderRefund> _callback) throws ApiException {
+
+        okhttp3.Call localVarCall = retrieveOrderRefundByIdValidateBeforeCall(orderId, refundId, _callback);
+        Type localVarReturnType = new TypeToken<OrderRefund>(){}.getType();
         localVarApiClient.executeAsync(localVarCall, localVarReturnType, _callback);
         return localVarCall;
     }
